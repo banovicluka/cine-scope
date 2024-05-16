@@ -1,0 +1,33 @@
+<div *ngIf="result !== undefined" class="center">
+    <div >
+        <h3 class="title" >
+            <span *ngIf="isMovie(result)">
+                {{result.title}}
+            </span>
+            <span *ngIf="isTvShow(result)">
+                {{result.original_name}}
+            </span>
+            <span *ngFor="let country of result.origin_country">
+                <img [src]="'https://www.flagsapi.com/' + country + '/flat/32.png'" alt="{{ country}}">
+            </span>
+        </h3>
+    </div>
+    <div class="rating">
+        <img src="assets/star-icon.png" class="star-icon">
+        <div>
+            {{result.vote_average}}/10
+        </div>
+        <a *ngIf="isMovie(result) && result.imdb_id !== null" target="_blank" [href]="'https://www.imdb.com/title/' + result.imdb_id" >
+            <img src="assets/imdb-icon.webp" class="icon">
+        </a>
+    </div>
+    <div class="genres">
+        <div class="genre" *ngFor="let genre of result.genres">
+            {{genre.name}}
+        </div>
+    </div>
+    <div class="overview">
+        {{result.overview}}
+    </div>
+    
+</div>

@@ -1,0 +1,16 @@
+<div *ngIf="view=== 'start'" class="view">
+    <div class="align top-padding">
+        <button class="tab-button" (click)="selectTab('movies')" [class.active]="selectedTab === 'movies'">Movies</button>
+        <button class="tab-button" (click)="selectTab('tvShows')" [class.active]="selectedTab === 'tvShows'">TV Shows</button>
+    </div>
+    <div class="align" >
+        <app-search class="search-input" [searchInput]="searchInput" (searchInputChanged)="onSearchInputChanged($event)"></app-search>
+    </div>
+        <div class="grid">
+            <div *ngFor="let result of results" (click)="navigateToDetails(result.id)" >
+                <app-card [result]="result"></app-card>
+            </div>
+        </div>
+    
+</div>
+<app-detailed-view *ngIf="view==='details'" class="top-padding" [selectedId]="selectedId" [selectedTab]="selectedTab" (backButtonClick)="handleBackAction()"></app-detailed-view>

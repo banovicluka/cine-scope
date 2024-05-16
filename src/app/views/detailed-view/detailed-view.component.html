@@ -1,0 +1,24 @@
+<div *ngIf="resultInfo!== undefined" class="align view">
+    <div>
+        <button (click)="goBack()" class="back-button">
+            <img src="assets/back-icon.png" class="icon">
+            <span class="back">
+                Back
+            </span>  
+        </button>
+    </div>
+    <div *ngIf="resultVideo !== null" class="center">
+        <iframe class="video" [src]="resultVideo" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div *ngIf="resultVideo === null" class="center">
+        <div *ngIf="isMovie(resultInfo)" >
+            <img  *ngIf="resultInfo.backdrop_path !== null " [src]="'https://image.tmdb.org/t/p/w500/' + resultInfo.backdrop_path" alt="{{resultInfo.title}}">
+        </div>
+        <div *ngIf="isTvShow(resultInfo)">
+            <img  *ngIf="resultInfo.backdrop_path !== null" [src]="'https://image.tmdb.org/t/p/w500/' + resultInfo.backdrop_path" alt="{{resultInfo.original_name}}">
+        </div>
+        <img  *ngIf="resultInfo.backdrop_path === null" src="assets/nopic.png" alt="No image">
+    </div>
+   <app-detail-overview [result]="resultInfo"></app-detail-overview>
+    
+</div>

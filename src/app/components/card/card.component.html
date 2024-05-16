@@ -1,0 +1,16 @@
+<div *ngIf="result !== undefined" class="movie-card">
+    <img  *ngIf="result.backdrop_path !== null" [src]="'https://image.tmdb.org/t/p/w500/' + result.backdrop_path" >
+    <img  *ngIf="result.backdrop_path === null" src="assets/nopic.png" alt="No image">
+    <div class="title">
+        <h3 class="title-name" *ngIf="isMovie(result)">{{ result.title }}</h3>
+        <h3 class="title-name" *ngIf="isTvShow(result)">{{ result.original_name }}</h3>
+        <div class="rating">
+            <img src="assets/star-icon.png" class="star-icon">
+            <div>
+                {{result.vote_average}}
+            </div>
+        </div>
+    </div>
+    
+</div>
+    
